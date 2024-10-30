@@ -5,3 +5,5 @@ dist
 
 app
 polar.ts
+
+.idea/

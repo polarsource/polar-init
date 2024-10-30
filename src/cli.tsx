@@ -23,6 +23,7 @@ import { StatusMessage } from "@inkjs/ui";
 import Link from 'ink-link'
 import React from "react";
 import { benefitPrompt } from "./prompts/benefit.js";
+import { isNuxtDirectory } from "./utils.js";
 
 process.on('uncaughtException', (error) => {
 	console.error(error);
@@ -40,7 +41,7 @@ const cli = meow(
 	  $ polar-init
 
 	Options
-	  --skip-precheck  Skips the Next.js project check
+	  --skip-precheck  Skips the Next.js or NuxtJS project check
 	  --skip-template  Skips the template prompt
 `,
 	{
@@ -82,19 +83,33 @@ const cli = meow(
 
 	if (!cli.flags.skipTemplate) {
 		const templates = await templatePrompt();
+		const isNuxt = isNuxtDirectory();
 
-		await copyPolarClientTemplate();
+		if (isNuxt) {
+			await copyPolarClientTemplate("nuxt");
+		} else {
+			await copyPolarClientTemplate();
+		}
 
 		const shouldCopyCheckout = templates.includes("checkout");
 		const shouldCopyWebhooks = templates.includes("webhooks");
 
 		if (shouldCopyCheckout) {
-			await copyProductsTemplate()
-			await copyCheckoutTemplate();
+			if (isNuxt) {
+				await copyProductsTemplate("nuxt");
+				await copyCheckoutTemplate("nuxt");
+			} else {
+				await copyProductsTemplate();
+				await copyCheckoutTemplate();
+			}
 		}
 
 		if (shouldCopyWebhooks) {
-			await copyWebhooksTemplate();
+			if (isNuxt) {
+				await copyWebhooksTemplate("nuxt");
+			} else {
+				await copyWebhooksTemplate();
+			}
 		}
 
 		const baseDependencies = ["@polar-sh/sdk"];
@@ -108,15 +123,27 @@ const cli = meow(
 			),
 		);
 
+
+
+
 		// Handle environment variables
-		await environmentDisclaimer(appendEnvironmentVariables({
-			...{
+		let envVar = {}
+		if (isNuxt) {
+			envVar = {
+				NUXT_POLAR_ORGANIZATION_ID: organization.id,
+				NUXT_POLAR_ACCESS_TOKEN: "",
+				NUXT_POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? "" : undefined,
+				NUXT_POLAR_SERVER: "sandbox",
+			};
+		} else {
+			envVar = {
+				POLAR_ORGANIZATION_ID: organization.id,
 				POLAR_ACCESS_TOKEN: "",
-				POLAR_ORGANIZATION_ID: organization.id
-			},
-			...shouldCopyWebhooks ? {
-				POLAR_WEBHOOK_SECRET: ""
-			} : {}
+				POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? "" : undefined,
+			};
+		}
+		await environmentDisclaimer(appendEnvironmentVariables({
+			...envVar,
 		}));
 	}
 

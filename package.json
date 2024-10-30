@@ -33,7 +33,8 @@
 		"react": "^18.2.0",
 		"standardwebhooks": "1.0.0",
 		"tsup": "^8.3.0",
-		"zod": "^3.23.8"
+		"zod": "^3.23.8",
+		"nuxt": "^3.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

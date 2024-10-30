@@ -1,13 +1,13 @@
 import { Spinner, StatusMessage } from "@inkjs/ui";
 import { Text, render } from "ink";
 import React from "react";
-import { isNextDirectory } from "../utils.js";
+import { isNextDirectory, isNuxtDirectory } from "../utils.js";
 
 const precheck = async () => {
-	if (!isNextDirectory()) {
+	if (!isNextDirectory() && !isNuxtDirectory()) {
 		const { unmount, clear, waitUntilExit } = render(
 			<StatusMessage variant="error">
-				<Text>This is not a Next.js project</Text>
+				<Text>This is not a Next.js or NuxtJS project</Text>
 			</StatusMessage>,
 		);
 
@@ -24,7 +24,7 @@ const precheck = async () => {
 
 export const precheckDisclaimer = async () => {
 	const { unmount, clear, waitUntilExit } = render(
-		<Spinner label="Analyzing your Next.js project..." />,
+		<Spinner label="Analyzing your Next.js or NuxtJS project..." />,
 	);
 
 	setTimeout(() => {
