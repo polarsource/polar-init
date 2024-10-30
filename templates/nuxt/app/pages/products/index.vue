@@ -1,30 +1,29 @@
 <script setup lang="ts">
-import type { Product } from '@polar-sh/sdk/models/components'
-import type { ProductPrice } from '@polar-sh/sdk/src/models/components/productprice'
+import type { Product } from "@polar-sh/sdk/models/components";
+import type { ProductPrice } from "@polar-sh/sdk/src/models/components/productprice";
 
-const products = ref<Product[]>([])
+const products = ref<Product[]>([]);
 
 // This could be a global store (such a pinia) if your app has one
 const fetchPolarProducts = async () => {
-  return await useRequestFetch()<Product[]>(`/api/polar/products`)
-}
+	return await useRequestFetch()<Product[]>(`/api/polar/products`);
+};
 
-const { data } = await useAsyncData(
-    'fetchPolarProducts',
-    () => fetchPolarProducts()
-)
-products.value = data.value ?? []
+const { data } = await useAsyncData("fetchPolarProducts", () =>
+	fetchPolarProducts(),
+);
+products.value = data.value ?? [];
 
 const formatPrice = (price: ProductPrice) => {
-  switch (price.amountType) {
-    case 'fixed':
-      return `$${price.priceAmount / 100}`
-    case 'free':
-      return 'Free'
-    default:
-      return 'Pay what you want'
-  }
-}
+	switch (price.amountType) {
+		case "fixed":
+			return `$${price.priceAmount / 100}`;
+		case "free":
+			return "Free";
+		default:
+			return "Pay what you want";
+	}
+};
 </script>
 
 <template>
