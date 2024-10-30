@@ -1,8 +1,8 @@
 import { Spinner, StatusMessage } from "@inkjs/ui";
 import { Text, render } from "ink";
 import React from "react";
-import { isNextDirectory, isNuxtDirectory } from "../utils.js";
 import type { Framework } from "../template.js";
+import { isNextDirectory, isNuxtDirectory } from "../utils.js";
 
 const precheck = async (): Promise<Framework> => {
 	const isNuxt = isNuxtDirectory();

@@ -1,25 +1,25 @@
 import { Polar } from "@polar-sh/sdk";
 import meow from "meow";
+import { appendEnvironmentVariables } from "./env.js";
 import { installDependencies } from "./install.js";
 import { login } from "./oauth.js";
 import { resolveOrganization } from "./organization.js";
 import { resolvePackageName } from "./package.js";
 import { createProduct } from "./product.js";
+import { benefitPrompt } from "./prompts/benefit.js";
 import { productPrompt } from "./prompts/product.js";
 import { templatePrompt } from "./prompts/template.js";
 import {
+	type Framework,
 	copyCheckoutTemplate,
 	copyPolarClientTemplate,
 	copyProductsTemplate,
 	copyWebhooksTemplate,
-	type Framework,
 } from "./template.js";
 import { authenticationMessage } from "./ui/authentication.js";
+import { environmentMessage } from "./ui/environment.js";
 import { installMessage } from "./ui/install.js";
 import { precheckMessage } from "./ui/precheck.js";
-import { environmentMessage } from "./ui/environment.js";
-import { appendEnvironmentVariables } from "./env.js";
-import { benefitPrompt } from "./prompts/benefit.js";
 import { successMessage } from "./ui/success.js";
 
 process.on("uncaughtException", (error) => {

@@ -1,9 +1,9 @@
-import { Box, render, Text } from "ink";
 import { StatusMessage } from "@inkjs/ui";
-import Link from "ink-link";
-import React from "react";
 import type { Organization } from "@polar-sh/sdk/models/components/organization.js";
 import type { Product } from "@polar-sh/sdk/models/components/product.js";
+import { Box, Text, render } from "ink";
+import Link from "ink-link";
+import React from "react";
 
 export const successMessage = (
 	organization: Organization,

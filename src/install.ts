@@ -1,4 +1,4 @@
-import spawn from 'cross-spawn'
+import spawn from "cross-spawn";
 import { getPkgManager } from "next/dist/lib/helpers/get-pkg-manager.js";
 
 /**

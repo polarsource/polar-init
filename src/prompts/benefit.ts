@@ -6,7 +6,7 @@ export const benefitPrompt = async () => {
 			type: "confirm",
 			name: "licenseKey",
 			message: "Include License Key with product?",
-			initial: true
+			initial: true,
 		},
 	]);
 
