@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+export type Framework = "next" | "nuxt";
+
 const resolveAppDirectory = () => {
 	const workingDirectory = process.cwd();
 
@@ -22,55 +24,100 @@ const resolveAppDirectory = () => {
 };
 
 const copyTemplate = async (
-	framework: string,
+	framework: Framework,
 	templatePath: string,
 	targetPath = resolveAppDirectory(),
 	isFile = false,
 ) => {
 	const cliDirectory = import.meta.dirname;
 
-	const templateDirectory = path.join(cliDirectory, "templates", framework, templatePath);
+	const templateDirectory = path.join(
+		cliDirectory,
+		"templates",
+		framework,
+		templatePath,
+	);
 
 	if (isFile) {
-		fs.copyFileSync(
-			templateDirectory,
-			path.join(targetPath, templatePath),
-		);
+		fs.copyFileSync(templateDirectory, path.join(targetPath, templatePath));
 	} else {
-		fs.cpSync(templateDirectory, path.join(targetPath, templatePath), { recursive: true });
+		fs.cpSync(templateDirectory, path.join(targetPath, templatePath), {
+			recursive: true,
+		});
 	}
 };
 
-export const copyPolarClientTemplate = async (framework = "next") => {
-	if (framework === "nuxt") {
-		copyTemplate(framework, path.join("app", "utils"), path.join(resolveAppDirectory(), ".."));
-	} else {
-		copyTemplate(framework, "polar.ts", path.join(resolveAppDirectory(), ".."), true);
+export const copyPolarClientTemplate = async (framework: Framework) => {
+	switch (framework) {
+		case "nuxt":
+			copyTemplate(
+				framework,
+				path.join("app", "utils"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			break;
+		case "next":
+			copyTemplate(
+				framework,
+				"polar.ts",
+				path.join(resolveAppDirectory(), ".."),
+				true,
+			);
+			break;
 	}
 };
 
-export const copyProductsTemplate = async (framework = "next") => {
-	if (framework === "nuxt") {
-		copyTemplate(framework, path.join("server", "api", "polar", "products"), path.join(resolveAppDirectory(), ".."));
-		copyTemplate(framework, path.join("app", "pages", "products"), path.join(resolveAppDirectory(), ".."));
-	} else {
-		copyTemplate(framework, "products");
+export const copyProductsTemplate = async (framework: Framework) => {
+	switch (framework) {
+		case "nuxt":
+			copyTemplate(
+				framework,
+				path.join("server", "api", "polar", "products"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			copyTemplate(
+				framework,
+				path.join("app", "pages", "products"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			break;
+		case "next":
+			copyTemplate(framework, "products");
+			break;
 	}
 };
 
-export const copyCheckoutTemplate = async (framework = "next") => {
-	if (framework === "nuxt") {
-		copyTemplate(framework, path.join("server", "api", "checkout"), path.join(resolveAppDirectory(), ".."));
-		copyTemplate(framework, path.join("app", "pages", "checkout"), path.join(resolveAppDirectory(), ".."));
-	} else {
-		copyTemplate(framework, "checkout");
+export const copyCheckoutTemplate = async (framework: Framework) => {
+	switch (framework) {
+		case "nuxt":
+			copyTemplate(
+				framework,
+				path.join("server", "api", "checkout"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			copyTemplate(
+				framework,
+				path.join("app", "pages", "checkout"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			break;
+		case "next":
+			copyTemplate(framework, "checkout");
+			break;
 	}
 };
 
-export const copyWebhooksTemplate = async (framework = "next") => {
-	if (framework === "nuxt") {
-		copyTemplate(framework, path.join("server", "api", "polar", "webhook"), path.join(resolveAppDirectory(), ".."));
-	} else {
-		copyTemplate(framework, "api");
+export const copyWebhooksTemplate = async (framework: Framework) => {
+	switch (framework) {
+		case "nuxt":
+			copyTemplate(
+				framework,
+				path.join("server", "api", "polar", "webhook"),
+				path.join(resolveAppDirectory(), ".."),
+			);
+			break;
+		case "next":
+			copyTemplate(framework, "api");
+			break;
 	}
 };

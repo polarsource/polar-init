@@ -2,8 +2,8 @@ import { Spinner } from "@inkjs/ui";
 import { render } from "ink";
 import React from "react";
 
-export const environmentDisclaimer = async (promise: Promise<void>) => {
-    const { unmount, waitUntilExit } = render(
+export const environmentMessage = async (promise: Promise<void>) => {
+	const { unmount, waitUntilExit } = render(
 		<Spinner label="Configuring environment variables..." />,
 	);
 

@@ -1,7 +1,7 @@
 import type { Polar } from "@polar-sh/sdk";
 import type { Organization } from "@polar-sh/sdk/models/components";
 import type { ProductsCreateProductCreate } from "@polar-sh/sdk/models/operations";
-import { benefitPrompt } from "./prompts/benefit.js";
+import type { benefitPrompt } from "./prompts/benefit.js";
 
 export const createProduct = async (
 	api: Polar,
@@ -12,13 +12,12 @@ export const createProduct = async (
 	const product = await api.products.create({
 		...productCreate,
 		organizationId: organization.id,
-		
 	});
 
 	if (benefit.licenseKey) {
 		const benefit = await api.benefits.create({
-			type: 'license_keys',
-			description: 'License Key',
+			type: "license_keys",
+			description: "License Key",
 			properties: {},
 			organizationId: organization.id,
 		});
@@ -27,7 +26,9 @@ export const createProduct = async (
 			id: product.id,
 			productBenefitsUpdate: {
 				benefits: [benefit.id],
-			}
+			},
 		});
 	}
+
+	return product;
 };
