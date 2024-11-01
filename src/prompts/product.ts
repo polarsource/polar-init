@@ -64,8 +64,8 @@ export const productPrompt = async () => {
 			name: "recurringInterval",
 			message: "Recurring Interval",
 			choices: [
-				{ title: "Monthly", value: "monthly" },
-				{ title: "Yearly", value: "yearly" },
+				{ title: "Monthly", value: "month" },
+				{ title: "Yearly", value: "year" },
 			],
 		},
 		{
