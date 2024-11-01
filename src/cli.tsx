@@ -141,5 +141,5 @@ const cli = meow(
 		);
 	}
 
-	successMessage(organization, createdProduct);
+	successMessage(organization, createdProduct, framework);
 })();

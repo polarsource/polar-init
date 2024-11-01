@@ -4,10 +4,12 @@ import type { Product } from "@polar-sh/sdk/models/components/product.js";
 import { Box, Text, render } from "ink";
 import Link from "ink-link";
 import React from "react";
+import type { Framework } from "../template.js";
 
 export const successMessage = (
 	organization: Organization,
 	product: Product,
+	framework: Framework,
 ) => {
 	render(
 		<Box flexDirection="column" columnGap={2}>
@@ -42,12 +44,14 @@ export const successMessage = (
 						Configure Webhooks
 					</Link>
 				</Text>
-				<Text color="cyanBright">
-					{">"}{" "}
-					<Link url="https://docs.polar.sh/guides/nextjs">
-						Continue to the Polar Next.js Guide
-					</Link>
-				</Text>
+				{framework === "next" && (
+					<Text color="cyanBright">
+						{">"}{" "}
+						<Link url="https://docs.polar.sh/guides/nextjs">
+							Continue to the Polar Next.js Guide
+						</Link>
+					</Text>
+				)}
 			</Box>
 		</Box>,
 	);

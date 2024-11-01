@@ -33,8 +33,7 @@ export const productPrompt = async () => {
 				message: "Price Type",
 				choices: [
 					{ title: "Free", value: "free" },
-					{ title: "Fixed", value: "fixed" },
-					{ title: "Custom", value: "custom" },
+					{ title: "Fixed Price", value: "fixed" },
 				],
 			},
 			{
@@ -67,7 +66,7 @@ export const productPrompt = async () => {
 			message: "Price Type",
 			choices: [
 				{ title: "Free", value: "free" },
-				{ title: "Fixed", value: "fixed" },
+				{ title: "Fixed Price", value: "fixed" },
 			],
 		},
 		{
