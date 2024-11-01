@@ -1,9 +1,9 @@
 import type { Polar } from "@polar-sh/sdk";
+import type { Organization } from "@polar-sh/sdk/models/components/organization.js";
 import {
 	createOrganizationPrompt,
 	selectOrganizationPrompt,
 } from "./prompts/organization.js";
-import type { Organization } from "@polar-sh/sdk/models/components/organization.js";
 
 export const resolveOrganization = async (
 	api: Polar,
