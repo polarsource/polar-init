@@ -1,6 +1,6 @@
 {
 	"name": "polar-init",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"license": "Apache-2.0",
 	"bin": "bin/cli.js",
 	"type": "module",
@@ -14,7 +14,10 @@
 		"check": "biome check --write ./src",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
-	"files": ["dist", "bin"],
+	"files": [
+		"dist",
+		"bin"
+	],
 	"dependencies": {
 		"@inkjs/ui": "^2.0.0",
 		"@polar-sh/sdk": "^0.17.1",
@@ -55,7 +58,9 @@
 			"ts": "module",
 			"tsx": "module"
 		},
-		"nodeArguments": ["--loader=ts-node/esm"]
+		"nodeArguments": [
+			"--loader=ts-node/esm"
+		]
 	},
 	"xo": {
 		"extends": "xo-react",
