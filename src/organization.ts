@@ -10,11 +10,7 @@ export const resolveOrganization = async (
 	slug: string,
 ): Promise<Organization> => {
 	// Get list of organizations user is member of
-	const userOrganizations = (
-		await api.organizations.list({
-			isMember: true,
-		})
-	).result.items;
+	const userOrganizations = (await api.organizations.list({})).result.items;
 
 	// Find organization matching slug if it exists
 	const matchingOrg = userOrganizations.find((org) => org.slug === slug);

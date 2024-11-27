@@ -1,12 +1,14 @@
 import type { Polar } from "@polar-sh/sdk";
-import type { Organization } from "@polar-sh/sdk/models/components";
-import type { ProductsCreateProductCreate } from "@polar-sh/sdk/models/operations";
+import type {
+	Organization,
+	ProductCreate,
+} from "@polar-sh/sdk/models/components";
 import type { benefitPrompt } from "./prompts/benefit.js";
 
 export const createProduct = async (
 	api: Polar,
 	organization: Organization,
-	productCreate: ProductsCreateProductCreate,
+	productCreate: ProductCreate,
 	benefit: Awaited<ReturnType<typeof benefitPrompt>>,
 ) => {
 	const product = await api.products.create({
