@@ -1,24 +1,8 @@
-import { Webhook } from "standardwebhooks";
-
-import type {
-	WebhookCheckoutCreatedPayload,
-	WebhookCheckoutUpdatedPayload,
-	WebhookSubscriptionActivePayload,
-	WebhookSubscriptionCanceledPayload,
-	WebhookSubscriptionCreatedPayload,
-	WebhookSubscriptionRevokedPayload,
-	WebhookSubscriptionUpdatedPayload,
-} from "@polar-sh/sdk/models/components";
+import {
+	validateEvent,
+	WebhookVerificationError,
+} from "@polar-sh/sdk/webhooks";
 import { defineEventHandler, readBody } from "h3";
-
-type WebhookEvent =
-	| WebhookCheckoutCreatedPayload
-	| WebhookCheckoutUpdatedPayload
-	| WebhookSubscriptionCreatedPayload
-	| WebhookSubscriptionActivePayload
-	| WebhookSubscriptionCanceledPayload
-	| WebhookSubscriptionUpdatedPayload
-	| WebhookSubscriptionRevokedPayload;
 
 export default defineEventHandler(async (event) => {
 	const { polarWebhookSecret } = useRuntimeConfig(event);
@@ -31,9 +15,20 @@ export default defineEventHandler(async (event) => {
 		"webhook-signature": getHeader(event, "webhook-signature") ?? "",
 	};
 
-	const webhookSecret = Buffer.from(polarWebhookSecret).toString("base64");
-	const wh = new Webhook(webhookSecret);
-	const webhookPayload = wh.verify(requestBody, webhookHeaders) as WebhookEvent;
+	let webhookPayload: ReturnType<typeof validateEvent>;
+	try {
+		webhookPayload = validateEvent(
+			requestBody,
+			webhookHeaders,
+			process.env.POLAR_WEBHOOK_SECRET ?? "",
+		);
+	} catch (error) {
+		if (error instanceof WebhookVerificationError) {
+			setResponseStatus(event, 403);
+			return {};
+		}
+		throw error;
+	}
 
 	console.log("Incoming Webhook", webhookPayload.type);
 

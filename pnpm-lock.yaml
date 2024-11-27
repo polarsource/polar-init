@@ -12,8 +12,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(ink@4.4.1(@types/react@18.3.11)(react@18.3.1))
       '@polar-sh/sdk':
-        specifier: ^0.13.3
-        version: 0.13.3(zod@3.23.8)
+        specifier: ^0.17.1
+        version: 0.17.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
       '@types/cross-spawn':
         specifier: ^6.0.6
         version: 6.0.6
@@ -47,9 +47,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.3.1
-      standardwebhooks:
-        specifier: 1.0.0
-        version: 1.0.0
       tsup:
         specifier: ^8.3.0
         version: 8.3.0(jiti@2.3.3)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.6.0)
@@ -1143,9 +1140,11 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@polar-sh/sdk@0.13.3':
-    resolution: {integrity: sha512-7nLCXyyFwrqYiPwOM1go1kN5E1TlwOBhh/JnlXO9PLD16qepqIALP0shspMGErx7BP0XLi4gwu+0vKnwAwfnEg==}
+  '@polar-sh/sdk@0.17.1':
+    resolution: {integrity: sha512-KaYYtia9y1ab4CWWlTxuD2jzj0AK1aaZ7wmyreXCgHpaqVXyuWmsFnSTfNYaNEJkCOkb6KkQdqoR7b4QPrx3Sg==}
     peerDependencies:
+      react: ^18 || ^19
+      react-dom: ^18 || ^19
       zod: '>= 3'
 
   '@polka/url@1.0.0-next.28':
@@ -6670,8 +6669,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@polar-sh/sdk@0.13.3(zod@3.23.8)':
+  '@polar-sh/sdk@0.17.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
     dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      standardwebhooks: 1.0.0
       zod: 3.23.8
 
   '@polka/url@1.0.0-next.28': {}

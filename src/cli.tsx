@@ -104,15 +104,8 @@ const cli = meow(
 		}
 
 		const baseDependencies = ["@polar-sh/sdk"];
-		const webhooksDependencies = ["standardwebhooks"];
 
-		await installMessage(
-			installDependencies(
-				shouldCopyWebhooks
-					? [...baseDependencies, ...webhooksDependencies]
-					: baseDependencies,
-			),
-		);
+		await installMessage(installDependencies(baseDependencies));
 
 		let envVar = {};
 
