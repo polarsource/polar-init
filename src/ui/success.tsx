@@ -47,7 +47,7 @@ export const successMessage = (
 				{framework === "next" && (
 					<Text color="cyanBright">
 						{">"}{" "}
-						<Link url="https://docs.polar.sh/guides/nextjs">
+						<Link url="https://docs.polar.sh/documentation/integration-guides/nextjs">
 							Continue to the Polar Next.js Guide
 						</Link>
 					</Text>
