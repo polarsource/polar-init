@@ -98,5 +98,5 @@ const cli = meow(
 		}),
 	);
 
-	successMessage(framework);
+	successMessage();
 })();
