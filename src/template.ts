@@ -47,75 +47,24 @@ const copyTemplate = async (
 	}
 };
 
-export const copyPolarClientTemplate = async (framework: Framework) => {
-	switch (framework) {
-		case "nuxt":
-			copyTemplate(
-				framework,
-				path.join("app", "utils"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			break;
-		case "next":
-			copyTemplate(
-				framework,
-				"polar.ts",
-				path.join(resolveAppDirectory(), ".."),
-				true,
-			);
-			break;
-	}
-};
-
-export const copyProductsTemplate = async (framework: Framework) => {
-	switch (framework) {
-		case "nuxt":
-			copyTemplate(
-				framework,
-				path.join("server", "api", "polar", "products"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			copyTemplate(
-				framework,
-				path.join("app", "pages", "products"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			break;
-		case "next":
-			copyTemplate(framework, "products");
-			break;
-	}
-};
-
 export const copyCheckoutTemplate = async (framework: Framework) => {
 	switch (framework) {
-		case "nuxt":
-			copyTemplate(
-				framework,
-				path.join("server", "api", "checkout"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			copyTemplate(
-				framework,
-				path.join("app", "pages", "checkout"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			break;
 		case "next":
 			copyTemplate(framework, "checkout");
 			break;
 	}
 };
 
+export const copyPortalTemplate = async (framework: Framework) => {
+	switch (framework) {
+		case "next":
+			copyTemplate(framework, "portal");
+			break;
+	}
+};
+
 export const copyWebhooksTemplate = async (framework: Framework) => {
 	switch (framework) {
-		case "nuxt":
-			copyTemplate(
-				framework,
-				path.join("server", "api", "polar", "webhook"),
-				path.join(resolveAppDirectory(), ".."),
-			);
-			break;
 		case "next":
 			copyTemplate(framework, "api");
 			break;

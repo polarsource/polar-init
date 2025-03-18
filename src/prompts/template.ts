@@ -7,7 +7,8 @@ export const templatePrompt = async () => {
 		message: "Polar Features",
 		instructions: false,
 		choices: [
-			{ title: "Checkout Routes", value: "checkout", selected: true },
+			{ title: "Checkout Route", value: "checkout", selected: true },
+			{ title: "Portal Route", value: "portal", selected: true },
 			{ title: "Webhook Handler", value: "webhooks", selected: true },
 		],
 	});
