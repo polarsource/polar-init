@@ -1,6 +1,6 @@
 {
 	"name": "polar-init",
-	"version": "0.2.2",
+	"version": "0.3.0",
 	"license": "Apache-2.0",
 	"bin": "bin/cli.js",
 	"type": "module",
@@ -17,7 +17,6 @@
 	"files": ["dist", "bin"],
 	"dependencies": {
 		"@inkjs/ui": "^2.0.0",
-		"@polar-sh/sdk": "^0.13.3",
 		"@types/cross-spawn": "^6.0.6",
 		"cross-spawn": "^7.0.3",
 		"ink": "^4.4.1",
@@ -28,10 +27,7 @@
 		"open": "^10.1.0",
 		"prompts": "^2.4.2",
 		"react": "^18.2.0",
-		"standardwebhooks": "1.0.0",
-		"tsup": "^8.3.0",
-		"zod": "^3.23.8",
-		"nuxt": "^3.0.0"
+		"tsup": "^8.3.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
