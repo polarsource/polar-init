@@ -2,7 +2,9 @@
 	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
 		"outDir": "dist",
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"moduleResolution": "bundler",
+		"module": "ESNext"
 	},
 	"include": ["src"]
 }
