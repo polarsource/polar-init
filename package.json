@@ -5,7 +5,7 @@
 	"bin": "bin/cli.js",
 	"type": "module",
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"scripts": {
 		"build": "pnpm run copy:templates && tsup ./src/cli.tsx --format esm",
@@ -14,37 +14,40 @@
 		"check": "biome check --write ./src",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
-	"files": ["dist", "bin"],
+	"files": [
+		"dist",
+		"bin"
+	],
 	"dependencies": {
 		"@inkjs/ui": "^2.0.0",
 		"@types/cross-spawn": "^6.0.6",
-		"cross-spawn": "^7.0.3",
-		"ink": "^4.4.1",
+		"cross-spawn": "^7.0.6",
+		"ink": "^6.0.1",
 		"ink-link": "^4.1.0",
 		"listr": "^0.14.3",
 		"meow": "^11.0.0",
-		"next": "^15.0.1",
-		"open": "^10.1.0",
+		"next": "^15.3.4",
+		"open": "^10.1.2",
 		"prompts": "^2.4.2",
-		"react": "^18.2.0",
-		"tsup": "^8.3.0"
+		"react": "^19.1.0",
+		"tsup": "^8.5.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@sindresorhus/tsconfig": "^3.0.1",
 		"@types/listr": "^0.14.9",
 		"@types/prompts": "^2.4.9",
-		"@types/react": "^18.3.11",
+		"@types/react": "^19.1.8",
 		"@vdemedes/prettier-config": "^2.0.1",
-		"ava": "^5.2.0",
-		"chalk": "^5.2.0",
+		"ava": "^5.3.1",
+		"chalk": "^5.4.1",
 		"eslint-config-xo-react": "^0.27.0",
-		"eslint-plugin-react": "^7.32.2",
-		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^4.6.2",
 		"ink-testing-library": "^3.0.0",
-		"prettier": "^2.8.7",
-		"ts-node": "^10.9.1",
-		"typescript": "^5.0.3",
+		"prettier": "^2.8.8",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.3",
 		"xo": "^0.53.1"
 	},
 	"ava": {
@@ -52,7 +55,9 @@
 			"ts": "module",
 			"tsx": "module"
 		},
-		"nodeArguments": ["--loader=ts-node/esm"]
+		"nodeArguments": [
+			"--loader=ts-node/esm"
+		]
 	},
 	"xo": {
 		"extends": "xo-react",
