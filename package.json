@@ -12,7 +12,7 @@
 		"dev": "pnpm run copy:templates && tsc --watch",
 		"lint": "xo",
 		"lint:fix": "xo --fix",
-		"test": "vitest",
+		"test": "vitest run .",
 		"fmt": "prettier ./src --write",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
@@ -42,6 +42,7 @@
 		"@types/react": "^19.1.8",
 		"@vdemedes/prettier-config": "^2.0.1",
 		"chalk": "^5.4.1",
+		"cli-testing-library": "^3.0.1",
 		"eslint-config-xo": "^0.47.0",
 		"eslint-config-xo-react": "^0.28.0",
 		"eslint-config-xo-typescript": "^8.0.1",

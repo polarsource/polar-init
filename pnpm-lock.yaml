@@ -66,6 +66,9 @@ importers:
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
+      cli-testing-library:
+        specifier: ^3.0.1
+        version: 3.0.1(vitest@3.2.4(@types/node@22.7.8)(jiti@2.3.3)(terser@5.36.0)(yaml@2.6.0))
       eslint-config-xo:
         specifier: ^0.47.0
         version: 0.47.0(eslint@9.30.1(jiti@2.3.3))(typescript@5.8.3)
@@ -110,16 +113,16 @@ packages:
     resolution: {integrity: sha512-0xZJFNE5XMpENsgfHYTw8FbX4kv53mFLn2i3XPoq69LyhYSCBJtitaHx9QnsVTrsogI4Z3+HtEfZ2/GFPOtf5g==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-validator-identifier@7.25.7':
-    resolution: {integrity: sha512-AM6TzwYqGChO45oiuPqwL2t20/HdMC1rTPAesnBCgPCSF1x3oN9MVUwQV2iyz4xqWrctwK5RNC8LV22kaQCNYg==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/helper-validator-identifier@7.27.1':
     resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
 
   '@babel/highlight@7.25.7':
     resolution: {integrity: sha512-iYyACpW3iW8Fw+ZybQK+drQre+ns/tKpXbNESfrhNnPLIklLbXr7MYJ6gPEd0iETGLOK+SxMjVvKb/ffmk+FEw==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@biomejs/biome@2.0.6':
@@ -1394,6 +1397,21 @@ packages:
   cli-spinners@3.2.0:
     resolution: {integrity: sha512-pXftdQloMZzjCr3pCTIRniDcys6dDzgpgVhAHHk6TKBDbRuP1MkuetTF5KSv4YUutbOPa7+7ZrAJ2kVtbMqyXA==}
     engines: {node: '>=18.20'}
+
+  cli-testing-library@3.0.1:
+    resolution: {integrity: sha512-fkQ8D2hQS53RP3s0yuCMHmTfPUMEqtVtJG0rs13MNE2khnkSaY8MsNxN7rSJZAzOOVsSg2I2F2XjEITJwf5dFg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@jest/expect': ^29.0.0
+      '@jest/globals': ^29.0.0
+      vitest: ^3.0.0
+    peerDependenciesMeta:
+      '@jest/expect':
+        optional: true
+      '@jest/globals':
+        optional: true
+      vitest:
+        optional: true
 
   cli-truncate@0.2.1:
     resolution: {integrity: sha512-f4r4yJnbT++qUPI9NR4XLDLq41gQ+uqnPItWG0F5ZkehuNiTTa3EY0S4AqTSUOeJ7/zU41oWPQSNkW5BqPL9bg==}
@@ -3913,16 +3931,16 @@ snapshots:
       '@babel/highlight': 7.25.7
       picocolors: 1.1.1
 
-  '@babel/helper-validator-identifier@7.25.7': {}
-
   '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/highlight@7.25.7':
     dependencies:
-      '@babel/helper-validator-identifier': 7.25.7
+      '@babel/helper-validator-identifier': 7.27.1
       chalk: 2.4.2
       js-tokens: 4.0.0
       picocolors: 1.1.1
+
+  '@babel/runtime@7.27.6': {}
 
   '@biomejs/biome@2.0.6':
     optionalDependencies:
@@ -5082,6 +5100,19 @@ snapshots:
       restore-cursor: 4.0.0
 
   cli-spinners@3.2.0: {}
+
+  cli-testing-library@3.0.1(vitest@3.2.4(@types/node@22.7.8)(jiti@2.3.3)(terser@5.36.0)(yaml@2.6.0)):
+    dependencies:
+      '@babel/code-frame': 7.25.7
+      '@babel/runtime': 7.27.6
+      picocolors: 1.1.1
+      redent: 4.0.0
+      slice-ansi: 7.1.0
+      strip-ansi: 7.1.0
+      strip-final-newline: 4.0.0
+      tree-kill: 1.2.2
+    optionalDependencies:
+      vitest: 3.2.4(@types/node@22.7.8)(jiti@2.3.3)(terser@5.36.0)(yaml@2.6.0)
 
   cli-truncate@0.2.1:
     dependencies:

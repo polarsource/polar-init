@@ -7,5 +7,10 @@
 		"module": "ESNext",
 		"jsx": "react-jsx"
 	},
-	"include": ["src"]
+	"files": [
+		"vitest.d.ts"
+	],
+	"include": [
+		"src"
+	]
 }
