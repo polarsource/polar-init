@@ -8,7 +8,7 @@ export const isNextDirectory = (directory: string = process.cwd()): boolean => {
 		"next.config.ts",
 	];
 
-	return nextIndicators.some((indicator) =>
+	return nextIndicators.some(indicator =>
 		fs.existsSync(path.join(directory, indicator)),
 	);
 };

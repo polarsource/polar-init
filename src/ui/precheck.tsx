@@ -1,41 +1,35 @@
-import { Spinner, StatusMessage } from "@inkjs/ui";
-import { Text, render } from "ink";
-import React from "react";
-import type { Framework } from "../template.js";
-import { isNextDirectory } from "../utils.js";
+import {Spinner, StatusMessage} from "@inkjs/ui";
+import {render, Text} from "ink";
+import type {Framework} from "../template.js";
+import {isNextDirectory} from "../utils.js";
 
 const precheck = async (): Promise<Framework> => {
 	const isNext = isNextDirectory();
 
-	let framework: Framework;
+	// TODO implement nuxt
 
-	switch (true) {
-		case isNext:
-			framework = "next";
-			break;
-		default: {
-			const { unmount, clear, waitUntilExit } = render(
-				<StatusMessage variant="error">
-					<Text>No valid framework detected</Text>
-				</StatusMessage>,
-			);
-
-			setTimeout(() => {
-				clear();
-				unmount();
-			}, 1000);
-
-			await waitUntilExit();
-
-			process.exit(1);
-		}
+	if (isNext) {
+		return "next";
 	}
 
-	return framework;
+	const {unmount, clear, waitUntilExit} = render(
+		<StatusMessage variant="error">
+			<Text>No valid framework detected</Text>
+		</StatusMessage>,
+	);
+
+	setTimeout(() => {
+		clear();
+		unmount();
+	}, 1000);
+
+	await waitUntilExit();
+
+	process.exit(1);
 };
 
 export const precheckMessage = async () => {
-	const { unmount, clear, waitUntilExit } = render(
+	const {unmount, clear, waitUntilExit} = render(
 		<Spinner label="Analyzing your framework..." />,
 	);
 
@@ -46,5 +40,5 @@ export const precheckMessage = async () => {
 
 	await waitUntilExit();
 
-	return await precheck();
+	return precheck();
 };

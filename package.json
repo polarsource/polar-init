@@ -10,8 +10,10 @@
 	"scripts": {
 		"build": "pnpm run copy:templates && tsup ./src/cli.tsx --format esm",
 		"dev": "pnpm run copy:templates && tsc --watch",
-		"test": "xo && vitest",
-		"check": "biome check --write ./src",
+		"lint": "xo",
+		"lint:fix": "xo --fix",
+		"test": "vitest",
+		"fmt": "prettier ./src --write",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
 	"files": [
@@ -33,29 +35,32 @@
 		"tsup": "^8.5.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "2.0.6",
 		"@sindresorhus/tsconfig": "^3.0.1",
 		"@types/listr": "^0.14.9",
 		"@types/prompts": "^2.4.9",
 		"@types/react": "^19.1.8",
 		"@vdemedes/prettier-config": "^2.0.1",
 		"chalk": "^5.4.1",
-		"eslint-config-xo-react": "^0.27.0",
+		"eslint-config-xo": "^0.47.0",
+		"eslint-config-xo-react": "^0.28.0",
+		"eslint-config-xo-typescript": "^8.0.1",
 		"eslint-plugin-react": "^7.37.5",
-		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-react-hooks": "^5.2.0",
 		"ink-testing-library": "^3.0.0",
-		"prettier": "^2.8.8",
+		"prettier": "^3.6.2",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.3",
 		"vitest": "^3.2.4",
 		"xo": "^1.1.1"
 	},
-	"xo": {
-		"extends": "xo-react",
-		"prettier": true,
-		"rules": {
-			"react/prop-types": "off"
-		}
-	},
-	"prettier": "@vdemedes/prettier-config"
+	"prettier": {
+		"useTabs": true,
+		"semi": true,
+		"singleQuote": false,
+		"quoteProps": "as-needed",
+		"bracketSpacing": false,
+		"arrowParens": "avoid",
+		"trailingComma": "all"
+	}
 }

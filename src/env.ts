@@ -5,10 +5,10 @@ const envFiles = [".env", ".env.local"];
 
 const resolveEnvPaths = async () => {
 	const cwd = process.cwd();
-	const paths = envFiles.map((file) => path.join(cwd, file));
+	const paths = envFiles.map(file => path.join(cwd, file));
 
 	const existingFiles = await Promise.all(
-		paths.map(async (filePath) => {
+		paths.map(async filePath => {
 			try {
 				await fs.access(filePath);
 				return filePath;
@@ -30,6 +30,7 @@ const writeEnvFile = async (
 		if (!acc.includes(`${key}=`)) {
 			return `${acc}\n${key}=${value}`;
 		}
+
 		return acc;
 	}, existingEnv);
 

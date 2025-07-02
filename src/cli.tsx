@@ -1,24 +1,24 @@
 import meow from "meow";
-import { appendEnvironmentVariables } from "./env.js";
-import { installDependencies } from "./install.js";
-import { templatePrompt } from "./prompts/template.js";
+import {appendEnvironmentVariables} from "./env.js";
+import {installDependencies} from "./install.js";
+import {templatePrompt} from "./prompts/template.js";
 import {
-	type Framework,
 	copyCheckoutTemplate,
 	copyPortalTemplate,
 	copyWebhooksTemplate,
+	type Framework,
 } from "./template.js";
-import { environmentMessage } from "./ui/environment.js";
-import { installMessage } from "./ui/install.js";
-import { precheckMessage } from "./ui/precheck.js";
-import { successMessage } from "./ui/success.js";
+import {environmentMessage} from "./ui/environment.js";
+import {installMessage} from "./ui/install.js";
+import {precheckMessage} from "./ui/precheck.js";
+import {successMessage} from "./ui/success.js";
 
-process.on("uncaughtException", (error) => {
+process.on("uncaughtException", error => {
 	console.error(error);
 	process.exit(1);
 });
 
-process.on("unhandledRejection", (error) => {
+process.on("unhandledRejection", error => {
 	console.error(error);
 	process.exit(1);
 });
@@ -48,13 +48,9 @@ const cli = meow(
 );
 
 (async () => {
-	let framework: Framework;
-
-	if (cli.flags.skipPrecheck) {
-		framework = "next";
-	} else {
-		framework = await precheckMessage();
-	}
+	const framework: Framework = cli.flags.skipPrecheck
+		? "next"
+		: await precheckMessage();
 
 	const templates = await templatePrompt();
 
@@ -80,16 +76,14 @@ const cli = meow(
 
 	let envVar = {};
 
-	switch (framework) {
-		case "next":
-			envVar = {
-				POLAR_ACCESS_TOKEN: "",
-				POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? "" : undefined,
-				POLAR_SERVER: cli.flags.sandbox
-					? "sandbox # Use sandbox if you're testing Polar - omit the parameter or pass 'production' otherwise"
-					: "production",
-			};
-			break;
+	if (framework === "next") {
+		envVar = {
+			POLAR_ACCESS_TOKEN: "",
+			POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? "" : undefined,
+			POLAR_SERVER: cli.flags.sandbox
+				? "sandbox # Use sandbox if you're testing Polar - omit the parameter or pass 'production' otherwise"
+				: "production",
+		};
 	}
 
 	await environmentMessage(

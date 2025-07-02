@@ -7,8 +7,8 @@ export const resolvePackageName = async () => {
 		const packageJson = await fs.readFile(`${workingDir}/package.json`, "utf8");
 
 		return JSON.parse(packageJson).name;
-	} catch (err) {
+	} catch (error) {
 		console.error("Could not find package.json in the current directory.");
-		throw err;
+		throw error;
 	}
 };

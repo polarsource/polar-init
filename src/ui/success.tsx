@@ -1,6 +1,5 @@
-import { StatusMessage } from "@inkjs/ui";
-import { Box, Text, render } from "ink";
-import React from "react";
+import {StatusMessage} from "@inkjs/ui";
+import {Box, render, Text} from "ink";
 
 export const successMessage = () => {
 	render(
