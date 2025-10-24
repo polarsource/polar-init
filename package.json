@@ -10,9 +10,8 @@
 	"scripts": {
 		"build": "pnpm run copy:templates && tsup ./src/cli.tsx --format esm",
 		"dev": "pnpm run copy:templates && tsc --watch",
-		"format": "prettier --write .",
-		"test": "prettier --check . && xo",
-		"check": "biome check --write ./src",
+		"format": "prettier --write ./src",
+		"test": "prettier --check ./src && xo",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
 	"files": [
@@ -35,7 +34,6 @@
 		"tsup": "^8.5.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.0",
 		"@sindresorhus/tsconfig": "^8.0.1",
 		"@types/listr": "^0.14.10",
 		"@types/prompts": "^2.4.9",
