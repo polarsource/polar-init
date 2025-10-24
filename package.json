@@ -5,7 +5,7 @@
   "bin": "bin/cli.js",
   "type": "module",
   "engines": {
-    "node": ">=16"
+    "node": ">=22"
   },
   "scripts": {
     "build": "pnpm run copy:templates && tsup ./src/cli.tsx --format esm",
