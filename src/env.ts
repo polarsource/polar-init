@@ -30,6 +30,7 @@ const writeEnvFile = async (
 		if (!acc.includes(`${key}=`)) {
 			return `${acc}\n${key}=${value}`;
 		}
+
 		return acc;
 	}, existingEnv);
 

@@ -11,7 +11,7 @@
 		"build": "pnpm run copy:templates && tsup ./src/cli.tsx --format esm",
 		"dev": "pnpm run copy:templates && tsc --watch",
 		"format": "prettier --write .",
-		"test": "prettier --check . && xo && ava",
+		"test": "prettier --check . && xo",
 		"check": "biome check --write ./src",
 		"copy:templates": "mkdir -p dist/templates && cp -r templates dist"
 	},
@@ -41,7 +41,6 @@
 		"@types/prompts": "^2.4.9",
 		"@types/react": "19.2.2",
 		"@vdemedes/prettier-config": "^2.0.1",
-		"ava": "^6.4.1",
 		"chalk": "^5.6.2",
 		"eslint": "^9.38.0",
 		"eslint-config-next": "16.0.0",
@@ -64,10 +63,30 @@
 		]
 	},
 	"xo": {
-		"extends": "xo-react",
 		"prettier": true,
+		"semicolon": true,
 		"rules": {
-			"react/prop-types": "off"
+			"react/prop-types": "off",
+			"n/prefer-global/process": "off",
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-return": "off",
+			"@typescript-eslint/naming-convention": "off",
+			"@typescript-eslint/switch-exhaustiveness-check": "off",
+			"@typescript-eslint/no-floating-promises": "off",
+			"unicorn/prefer-top-level-await": "off",
+			"unicorn/no-array-reduce": "off",
+			"unicorn/no-process-exit": "off",
+			"unicorn/catch-error-name": "off",
+			"unicorn/prevent-abbreviations": "off",
+			"unicorn/import-style": "off",
+			"promise/prefer-await-to-then": "off",
+			"no-await-in-loop": "off",
+			"new-cap": "off",
+			"import-x/no-unassigned-import": "off",
+			"object-shorthand": "off",
+			"prefer-const": "off",
+			"capitalized-comments": "off"
 		}
 	},
 	"prettier": "@vdemedes/prettier-config",

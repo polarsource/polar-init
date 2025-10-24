@@ -50,11 +50,7 @@ const cli = meow(
 (async () => {
 	let framework: Framework;
 
-	if (cli.flags.skipPrecheck) {
-		framework = 'next';
-	} else {
-		framework = await precheckMessage();
-	}
+	framework = cli.flags.skipPrecheck ? 'next' : await precheckMessage();
 
 	const templates = await templatePrompt();
 
@@ -81,7 +77,7 @@ const cli = meow(
 	let envVar = {};
 
 	switch (framework) {
-		case 'next':
+		case 'next': {
 			envVar = {
 				POLAR_ACCESS_TOKEN: '',
 				POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? '' : undefined,
@@ -90,6 +86,7 @@ const cli = meow(
 					: 'production',
 			};
 			break;
+		}
 	}
 
 	await environmentMessage(

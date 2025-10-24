@@ -10,9 +10,11 @@ const precheck = async (): Promise<Framework> => {
 	let framework: Framework;
 
 	switch (true) {
-		case isNext:
+		case isNext: {
 			framework = 'next';
 			break;
+		}
+
 		default: {
 			const {unmount, clear, waitUntilExit} = render(
 				<StatusMessage variant="error">
@@ -46,5 +48,5 @@ export const precheckMessage = async () => {
 
 	await waitUntilExit();
 
-	return await precheck();
+	return precheck();
 };
