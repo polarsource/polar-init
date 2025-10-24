@@ -30,8 +30,8 @@ importers:
         specifier: ^0.14.3
         version: 0.14.3
       meow:
-        specifier: ^11.0.0
-        version: 11.0.0
+        specifier: ^14.0.0
+        version: 14.0.0
       next:
         specifier: 16.0.0
         version: 16.0.0(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -3060,6 +3060,10 @@ packages:
   meow@11.0.0:
     resolution: {integrity: sha512-Cl0yeeIrko6d94KpUo1M+0X1sB14ikoaqlIGuTH1fW4I+E3+YljL54/hb/BWmVfrV9tTV9zU04+xjw08Fh2WkA==}
     engines: {node: '>=14.16'}
+
+  meow@14.0.0:
+    resolution: {integrity: sha512-JhC3R1f6dbspVtmF3vKjAWz1EVIvwFrGGPLSdU6rK79xBwHWTuHoLnRX/t1/zHS1Ch1Y2UtIrih7DAHuH9JFJA==}
+    engines: {node: '>=20'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -7529,6 +7533,8 @@ snapshots:
       trim-newlines: 4.1.1
       type-fest: 3.13.1
       yargs-parser: 21.1.1
+
+  meow@14.0.0: {}
 
   merge-stream@2.0.0: {}
 
