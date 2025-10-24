@@ -1,14 +1,14 @@
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 
-export type Framework = "next" | "nuxt";
+export type Framework = 'next' | 'nuxt';
 
 const resolveAppDirectory = () => {
 	const workingDirectory = process.cwd();
 
-	// find the app directory which can be either app or src/app
-	const appPath = path.join(workingDirectory, "app");
-	const srcAppPath = path.join(workingDirectory, "src", "app");
+	// Find the app directory which can be either app or src/app
+	const appPath = path.join(workingDirectory, 'app');
+	const srcAppPath = path.join(workingDirectory, 'src', 'app');
 
 	if (fs.existsSync(appPath)) {
 		return appPath;
@@ -33,7 +33,7 @@ const copyTemplate = async (
 
 	const templateDirectory = path.join(
 		cliDirectory,
-		"templates",
+		'templates',
 		framework,
 		templatePath,
 	);
@@ -49,24 +49,27 @@ const copyTemplate = async (
 
 export const copyCheckoutTemplate = async (framework: Framework) => {
 	switch (framework) {
-		case "next":
-			copyTemplate(framework, "checkout");
+		case 'next': {
+			copyTemplate(framework, 'checkout');
 			break;
+		}
 	}
 };
 
 export const copyPortalTemplate = async (framework: Framework) => {
 	switch (framework) {
-		case "next":
-			copyTemplate(framework, "portal");
+		case 'next': {
+			copyTemplate(framework, 'portal');
 			break;
+		}
 	}
 };
 
 export const copyWebhooksTemplate = async (framework: Framework) => {
 	switch (framework) {
-		case "next":
-			copyTemplate(framework, "api");
+		case 'next': {
+			copyTemplate(framework, 'api');
 			break;
+		}
 	}
 };

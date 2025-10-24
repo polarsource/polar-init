@@ -1,9 +1,9 @@
-import { Spinner } from "@inkjs/ui";
-import { render } from "ink";
-import React from "react";
+import {Spinner} from '@inkjs/ui';
+import {render} from 'ink';
+import React from 'react';
 
 export const installMessage = async (promise: Promise<void>) => {
-	const { unmount, waitUntilExit } = render(
+	const {unmount, waitUntilExit} = render(
 		<Spinner label="Installing dependencies..." />,
 	);
 
