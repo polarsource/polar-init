@@ -1,24 +1,24 @@
-import meow from "meow";
-import { appendEnvironmentVariables } from "./env.js";
-import { installDependencies } from "./install.js";
-import { templatePrompt } from "./prompts/template.js";
+import meow from 'meow';
+import {appendEnvironmentVariables} from './env.js';
+import {installDependencies} from './install.js';
+import {templatePrompt} from './prompts/template.js';
 import {
 	type Framework,
 	copyCheckoutTemplate,
 	copyPortalTemplate,
 	copyWebhooksTemplate,
-} from "./template.js";
-import { environmentMessage } from "./ui/environment.js";
-import { installMessage } from "./ui/install.js";
-import { precheckMessage } from "./ui/precheck.js";
-import { successMessage } from "./ui/success.js";
+} from './template.js';
+import {environmentMessage} from './ui/environment.js';
+import {installMessage} from './ui/install.js';
+import {precheckMessage} from './ui/precheck.js';
+import {successMessage} from './ui/success.js';
 
-process.on("uncaughtException", (error) => {
+process.on('uncaughtException', error => {
 	console.error(error);
 	process.exit(1);
 });
 
-process.on("unhandledRejection", (error) => {
+process.on('unhandledRejection', error => {
 	console.error(error);
 	process.exit(1);
 });
@@ -36,11 +36,11 @@ const cli = meow(
 		importMeta: import.meta,
 		flags: {
 			sandbox: {
-				type: "boolean",
+				type: 'boolean',
 				default: false,
 			},
 			skipPrecheck: {
-				type: "boolean",
+				type: 'boolean',
 				default: false,
 			},
 		},
@@ -51,16 +51,16 @@ const cli = meow(
 	let framework: Framework;
 
 	if (cli.flags.skipPrecheck) {
-		framework = "next";
+		framework = 'next';
 	} else {
 		framework = await precheckMessage();
 	}
 
 	const templates = await templatePrompt();
 
-	const shouldCopyCheckout = templates.includes("checkout");
-	const shouldCopyPortal = templates.includes("portal");
-	const shouldCopyWebhooks = templates.includes("webhooks");
+	const shouldCopyCheckout = templates.includes('checkout');
+	const shouldCopyPortal = templates.includes('portal');
+	const shouldCopyWebhooks = templates.includes('webhooks');
 
 	if (shouldCopyCheckout) {
 		await copyCheckoutTemplate(framework);
@@ -74,20 +74,20 @@ const cli = meow(
 		await copyWebhooksTemplate(framework);
 	}
 
-	const dependencies = ["@polar-sh/sdk", "@polar-sh/nextjs", "zod"];
+	const dependencies = ['@polar-sh/sdk', '@polar-sh/nextjs', 'zod'];
 
 	await installMessage(installDependencies(dependencies));
 
 	let envVar = {};
 
 	switch (framework) {
-		case "next":
+		case 'next':
 			envVar = {
-				POLAR_ACCESS_TOKEN: "",
-				POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? "" : undefined,
+				POLAR_ACCESS_TOKEN: '',
+				POLAR_WEBHOOK_SECRET: shouldCopyWebhooks ? '' : undefined,
 				POLAR_SERVER: cli.flags.sandbox
 					? "sandbox # Use sandbox if you're testing Polar - omit the parameter or pass 'production' otherwise"
-					: "production",
+					: 'production',
 			};
 			break;
 	}

@@ -1,5 +1,5 @@
-import spawn from "cross-spawn";
-import { getPkgManager } from "next/dist/lib/helpers/get-pkg-manager.js";
+import spawn from 'cross-spawn';
+import {getPkgManager} from 'next/dist/lib/helpers/get-pkg-manager.js';
 
 /**
  * Spawn a package manager installation with either npm, pnpm, or yarn.
@@ -7,23 +7,23 @@ import { getPkgManager } from "next/dist/lib/helpers/get-pkg-manager.js";
 const install = (
 	root: string,
 	dependencies: string[],
-	packageManager: "npm" | "pnpm" | "yarn",
+	packageManager: 'npm' | 'pnpm' | 'yarn',
 ): Promise<void> => {
 	let args: string[] = [];
 
 	if (dependencies.length > 0) {
-		if (packageManager === "yarn") {
-			args = ["add", "--exact"];
-		} else if (packageManager === "pnpm") {
-			args = ["add", "--save-exact"];
+		if (packageManager === 'yarn') {
+			args = ['add', '--exact'];
+		} else if (packageManager === 'pnpm') {
+			args = ['add', '--save-exact'];
 		} else {
 			// npm
-			args = ["install", "--save-exact"];
+			args = ['install', '--save-exact'];
 		}
 
 		args.push(...dependencies);
 	} else {
-		args = ["install"]; // npm, pnpm, and yarn all support `install`
+		args = ['install']; // npm, pnpm, and yarn all support `install`
 	}
 
 	return new Promise((resolve, reject) => {
@@ -34,16 +34,16 @@ const install = (
 			cwd: root,
 			env: {
 				...process.env,
-				ADBLOCK: "1",
+				ADBLOCK: '1',
 				// we set NODE_ENV to development as pnpm skips dev
 				// dependencies when production
-				NODE_ENV: "development",
+				NODE_ENV: 'development',
 			},
 		});
 
-		child.on("close", (code: number) => {
+		child.on('close', (code: number) => {
 			if (code !== 0) {
-				reject({ command: `${packageManager} ${args.join(" ")}` });
+				reject({command: `${packageManager} ${args.join(' ')}`});
 				return;
 			}
 			resolve();
